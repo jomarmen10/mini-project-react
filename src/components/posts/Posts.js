@@ -6,7 +6,10 @@ class Post extends Component {
     return(
       <div>
         {allPost.map((p,i)=>{
-          return <h1>{p.title}</h1>
+          return  <div>
+            <h1>{p.title}</h1>
+            <h2>{p.review}</h2>
+          </div>
         })}
       </div>
     )
