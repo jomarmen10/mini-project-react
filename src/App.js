@@ -1,11 +1,15 @@
 import React, { Component} from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Register from './components/register/Register'
 import Post from './components/posts/Posts'
-
+import Header from './components/header/Header'
+import Login from './components/login/Login'
 
 class App extends Component {
   state = {
+    currentUser: null,
+    isLogged: null,
     post: []
   }
 
@@ -30,13 +34,60 @@ class App extends Component {
     }
   }
 
+  userLogin = async(data)=> {
+    try{
+      const loginData = await fetch('http://localhost:8000/users/login', {
+        method: "POST",
+        body: JSON.stringify(data),
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const resParsed = await loginData.json()
+      if(resParsed.success){
+        this.setState({
+          isLogged: true,
+          currentUser: resParsed.user
+        })
+      }
+
+    }catch(err){
+      return err
+    }
+  }
+
+
+  register = async(data) => {
+    try{
+      const registerUser = await fetch('http://localhost:8000/users/registration', {
+        method: "POST",
+        body: JSON.stringify(data),
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const resParsed = await registerUser.json()
+      this.setState({
+        currentUser: resParsed
+      })
+    }catch(err){
+      return err
+    }
+  }
+
 
 
   render() {
     return (
       <div>
-        <Register />
-        <Post allPost={this.state.post}/>
+        <Header />
+        <Switch>
+          <Route exact path={'/'} render={()=>(<Post allPost={this.state.post}/>)} />
+          <Route exact path={'/register'} render={()=>( <Register register={this.register}/> )} />
+          <Route exact path={'/login'} render={()=>( <Login login={this.userLogin}/>)} />
+        </Switch>
       </div>
     );
   }
