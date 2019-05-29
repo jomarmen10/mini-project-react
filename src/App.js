@@ -5,6 +5,7 @@ import Register from './components/register/Register'
 import Post from './components/posts/Posts'
 import Header from './components/header/Header'
 import Login from './components/login/Login'
+import Show from './components/show/Show'
 
 class App extends Component {
   state = {
@@ -84,6 +85,7 @@ class App extends Component {
       <div>
         <Header />
         <Switch>
+          <Route exact path={'/show/:id'} render={(props)=>{ return <Show {...props}  posts={this.state.post}/>}}/>
           <Route exact path={'/'} render={()=>(<Post allPost={this.state.post}/>)} />
           <Route exact path={'/register'} render={()=>( <Register register={this.register}/> )} />
           <Route exact path={'/login'} render={()=>( <Login login={this.userLogin}/>)} />

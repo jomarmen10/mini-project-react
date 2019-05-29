@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 class Post extends Component {
   render(){
@@ -7,7 +8,9 @@ class Post extends Component {
       <div>
         {allPost.map((p,i)=>{
           return  <div>
-            <h1>{p.title}</h1>
+          <Link to={`/show/${i}`}>
+            <h1>{p.name}</h1>
+          </Link>
             <h2>{p.review}</h2>
           </div>
         })}
