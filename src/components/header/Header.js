@@ -7,7 +7,8 @@ class Header extends Component {
     return(
       <div>
         <NavLink to={'/'}>Home</NavLink> <br/>
-        <NavLink to={'/register'}>Register</NavLink>
+        <NavLink to={'/register'}>Register</NavLink> <br/>
+        <NavLink to={'/login'}>login</NavLink>
       </div>
     )
   }

@@ -4,11 +4,12 @@ import './App.css';
 import Register from './components/register/Register'
 import Post from './components/posts/Posts'
 import Header from './components/header/Header'
-
+import Login from './components/login/Login'
 
 class App extends Component {
   state = {
     currentUser: null,
+    isLogged: null,
     post: []
   }
 
@@ -28,6 +29,29 @@ class App extends Component {
       const resParsed = await postData.json()
       console.log(resParsed)
       return resParsed
+    }catch(err){
+      return err
+    }
+  }
+
+  userLogin = async(data)=> {
+    try{
+      const loginData = await fetch('http://localhost:8000/users/login', {
+        method: "POST",
+        body: JSON.stringify(data),
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const resParsed = await loginData.json()
+      if(resParsed.success){
+        this.setState({
+          isLogged: true,
+          currentUser: resParsed.user
+        })
+      }
+
     }catch(err){
       return err
     }
@@ -62,6 +86,7 @@ class App extends Component {
         <Switch>
           <Route exact path={'/'} render={()=>(<Post allPost={this.state.post}/>)} />
           <Route exact path={'/register'} render={()=>( <Register register={this.register}/> )} />
+          <Route exact path={'/login'} render={()=>( <Login login={this.userLogin}/>)} />
         </Switch>
       </div>
     );
