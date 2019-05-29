@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Register from './components/register/Register'
 import Post from './components/posts/Posts'
@@ -6,6 +7,7 @@ import Post from './components/posts/Posts'
 
 class App extends Component {
   state = {
+    currentUser: null,
     post: []
   }
 
@@ -30,23 +32,6 @@ class App extends Component {
     }
   }
 
-  // handleRegister = async (data) => {
-  //   try {
-  //     const registerCall = await fetch('http://localhost:8000/users/registration', {
-  //       method: "POST",
-  //       body: JSON.stringify(data),
-  //       credentials: 'include',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     })
-  //     const response = await registerCall.json()
-  //     console.log(response, 'from the flask server on localhost:8000')
-  //
-  //   } catch(err){
-  //     console.log(err)
-  //   }
-  // }
 
   register = async(data) => {
     try{
@@ -58,7 +43,10 @@ class App extends Component {
           'Content-Type': 'application/json'
         }
       })
-      const response = await registerUser.json()
+      const resParsed = await registerUser.json()
+      this.setState({
+        currentUser: resParsed
+      })
     }catch(err){
       return err
     }
@@ -69,8 +57,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Register register={this.register}/>
-        <Post allPost={this.state.post}/>
+        <Switch>
+          <Route exact path={'/'} render={()=>(<Post allPost={this.state.post}/>)} />
+          <Route exact path={'/register'} render={()=>( <Register register={this.register}/> )} />
+        </Switch>
       </div>
     );
   }
