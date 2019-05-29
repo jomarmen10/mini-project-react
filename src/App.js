@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Register from './components/register/Register'
 import Post from './components/posts/Posts'
+import Header from './components/header/Header'
 
 
 class App extends Component {
@@ -57,6 +58,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Header />
         <Switch>
           <Route exact path={'/'} render={()=>(<Post allPost={this.state.post}/>)} />
           <Route exact path={'/register'} render={()=>( <Register register={this.register}/> )} />
