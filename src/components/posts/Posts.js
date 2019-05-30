@@ -41,6 +41,7 @@ class Post extends Component {
   render(){
     const { allPost } = this.props
     return(
+
       <CardStyle>
         <CardDeck>
           {allPost.map((p,i)=>{
@@ -62,6 +63,8 @@ class Post extends Component {
           })}
         </CardDeck>
       </CardStyle>
+
+
     )
   }
 }
