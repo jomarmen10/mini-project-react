@@ -26,6 +26,7 @@ const NavStyle = styled.div`
 
 class Header extends Component {
   render(){
+    const { isLogged } = this.props
     return(
       <NavStyle>
         <Navbar expand='lg'>
@@ -34,15 +35,28 @@ class Header extends Component {
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-
+            {
+              isLogged
+              ? (
+                <Nav.Item>
+                  <NavLink to={'/profile'}>Profile</NavLink>
+                  {/* <Nav.Link href='/register'>Register</Nav.Link> */}
+                </Nav.Item>
+              )
+              : (
                 <Nav.Item>
                   <NavLink to={'/register'}>Register</NavLink>
                   {/* <Nav.Link href='/register'>Register</Nav.Link> */}
                 </Nav.Item>
+              )
+            }
+
+
                 <Nav.Item>
                 <NavLink to={'/login'}>Login</NavLink>
                   {/* <Nav.Link href='/login'>Login</Nav.Link> */}
                 </Nav.Item>
+
             </Nav>
         </Navbar.Collapse>
         </Navbar>
