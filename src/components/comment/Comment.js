@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 class Comment extends Component {
 
   render(){
-    const { listOfComment, commentId, currentUser } = this.props
-    console.log(currentUser)
+    const { listOfComment, commentId } = this.props
     return(
       <div>
         {
@@ -13,7 +12,7 @@ class Comment extends Component {
               <div>
                 {listOfComment.map((m,i)=>{
                   {if(Number(m.postId) === commentId ){
-                    return <h1 key={i}>{m.comments}</h1>
+                    return <p key={i}>{m.username}:{ m.comments}</p>
                   }}
 
                 })}

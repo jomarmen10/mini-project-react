@@ -18,7 +18,7 @@ class Post extends Component {
                 <Col><h1>{p.name}</h1></Col>
               </Link>
               <Col><h2>{p.review}</h2></Col>
-
+              <h1>{p.id}</h1>
             </div>
             })}
           </div>

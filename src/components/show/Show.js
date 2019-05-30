@@ -3,8 +3,10 @@ import Comment from '../comment/Comment'
 
 class Show extends Component{
   state = {
-    user: "",
-    comment: '',
+    userId: "",
+    postId: "",
+    username: "",
+    comments: '',
     listOfComment: []
   }
 
@@ -16,7 +18,9 @@ class Show extends Component{
         this.props.isLogged
         ? (  this.setState({
             listOfComment: res,
-            user: this.props.currentUser.id
+            userId: this.props.currentUser.id,
+            username: this.props.currentUser.username,
+            postId: this.props.posts[this.props.match.params.id].id
           }))
         :(
           this.setState({
@@ -64,9 +68,10 @@ class Show extends Component{
 
 
   render(){
-    const { posts } = this.props
+    const { posts, isLogged } = this.props
     const { comment } = this.state
     const rest = posts[this.props.match.params.id]
+
     return(
       <div>
         {rest
@@ -76,11 +81,18 @@ class Show extends Component{
               <h3>{rest.address}</h3>
               <p>{rest.review}</p>
               <h1>comment id: {rest.id}</h1>
-              <Comment currentUser={this.props.currentUser} commentId={rest.id} listOfComment={this.state.listOfComment}/>
-              <form onSubmit={this.submitHandler}>
-                <input type="text" name="comment" placeholder="comment/review" value={comment} onChange={this.inputHandler}></input>
-                <button type='Submit'>Submit</button>
-              </form>
+              <Comment  commentId={rest.id} listOfComment={this.state.listOfComment}/>
+              {
+                isLogged
+                  ? (
+                    <form onSubmit={this.submitHandler}>
+                      <input type="text" name="comments" placeholder="comment/review" value={comment} onChange={this.inputHandler}></input>
+                      <button type='Submit'>Submit</button>
+                    </form>
+                  )
+                  : <h2>Login to add comment</h2>
+              }
+
             </div>
           )
           :<h1>Loading...</h1>

@@ -88,7 +88,7 @@ class App extends Component {
           <Route exact path={'/show/:id'} render={(props)=>{ return <Show {...props}  posts={this.state.post} currentUser={this.state.currentUser} isLogged={this.state.isLogged}/>}}/>
           <Route exact path={'/'} render={()=>(<Post allPost={this.state.post} />)} />
           <Route exact path={'/register'} render={()=>( <Register register={this.register}/> )} />
-          <Route exact path={'/login'} render={()=>( <Login login={this.userLogin}/>)} />
+          <Route exact path={'/login'} render={()=>( <Login login={this.userLogin} isLogged={this.state.isLogged}/>)} />
         </Switch>
       </div>
     );
