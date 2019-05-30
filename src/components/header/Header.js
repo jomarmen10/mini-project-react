@@ -29,7 +29,8 @@ class Header extends Component {
     return(
       <NavStyle>
         <Navbar expand='lg'>
-        <Navbar.Brand href='/'>Happy Hour</Navbar.Brand>
+
+        <Navbar.Brand ><NavLink to={'/'}>Happy Hour</NavLink></Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>

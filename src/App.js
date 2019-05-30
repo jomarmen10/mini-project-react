@@ -10,7 +10,7 @@ import Show from './components/show/Show'
 class App extends Component {
   state = {
     currentUser: null,
-    isLogged: null,
+    isLogged: false,
     post: []
   }
 
@@ -85,8 +85,8 @@ class App extends Component {
       <div>
         <Header />
         <Switch>
-          <Route exact path={'/show/:id'} render={(props)=>{ return <Show {...props}  posts={this.state.post}/>}}/>
-          <Route exact path={'/'} render={()=>(<Post allPost={this.state.post}/>)} />
+          <Route exact path={'/show/:id'} render={(props)=>{ return <Show {...props}  posts={this.state.post} currentUser={this.state.currentUser} isLogged={this.state.isLogged}/>}}/>
+          <Route exact path={'/'} render={()=>(<Post allPost={this.state.post} />)} />
           <Route exact path={'/register'} render={()=>( <Register register={this.register}/> )} />
           <Route exact path={'/login'} render={()=>( <Login login={this.userLogin}/>)} />
         </Switch>

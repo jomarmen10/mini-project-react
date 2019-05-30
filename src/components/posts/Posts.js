@@ -10,15 +10,16 @@ class Post extends Component {
     return(
       <Container>
         {/* <Row> */}
-          <div>
-            {allPost.map((p,i)=>{
-              return <div>
-                <Col><h1>{p.picture}</h1></Col>
-                <Link to={`/show/${i}`}>
-                  <Col><h1>{p.name}</h1></Col>
-                </Link>
-                <Col><h2>{p.review}</h2></Col>
-              </div>
+        <div>
+          {allPost.map((p,i)=>{
+            return <div key={i}>
+              <Col><h1>{p.picture}</h1></Col>
+              <Link to={`/show/${i}`}>
+                <Col><h1>{p.name}</h1></Col>
+              </Link>
+              <Col><h2>{p.review}</h2></Col>
+
+            </div>
             })}
           </div>
         {/* </Row> */}
