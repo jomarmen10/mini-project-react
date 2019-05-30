@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class Profile extends Component {
   state = {
-    listOfComments: []
+    listOfComments: [],
+    post: []
   }
 
   componentDidMount(){
@@ -25,10 +26,30 @@ class Profile extends Component {
     }
   }
 
-  render(){
-    const { currentUser, isLogged } = this.props
+  commentsAndPosts = () =>{
     const { listOfComments } = this.state
-    console.log(listOfComments)
+    const { allPost, currentUser } = this.props
+    let array = []
+    for (let i = 0; i < listOfComments.length; i++){
+      if(currentUser.id === Number(listOfComments[i].userId)){
+        for(let j = 0; j < allPost.length; j++){
+          if(Number(listOfComments[i].postId) === allPost[j].id ){
+            let obj = {
+              comment: listOfComments[i],
+              post: allPost[j]
+            }
+            array.push(obj)
+          }
+        }
+      }
+    }
+    return array;
+  }
+
+  render(){
+    const { currentUser, isLogged, allPost } = this.props
+    const { listOfComments } = this.state
+    console.log(this.props.allPost)
     return(
       <div>
         {
@@ -36,10 +57,13 @@ class Profile extends Component {
             ? (
               <div>
                 <h2>{currentUser.username}</h2>
-                {listOfComments.map((c,i)=>{
-                  {if(currentUser.id === Number(c.userId)){
-                    return <h2 key={i}>{c.comments}</h2>
-                  }}
+                {this.commentsAndPosts().map((c, i)=>{
+                  return(
+                    <div key={i}>
+                      <h1>{c.post.name}</h1>
+                      <p>{c.comment.comments}</p>
+                    </div>
+                  )
                 })}
               </div>
             )
