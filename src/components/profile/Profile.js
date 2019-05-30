@@ -62,6 +62,7 @@ class Profile extends Component {
                     <div key={i}>
                       <h1>{c.post.name}</h1>
                       <p>{c.comment.comments}</p>
+                      <button>edit</button>
                     </div>
                   )
                 })}
