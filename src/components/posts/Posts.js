@@ -1,29 +1,69 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import { Link } from 'react-router-dom'
+import { Card, CardDeck, Col, Image } from 'react-bootstrap'
+import styled from 'styled-components'
+
+const CardStyle = styled.div`
+
+  .cardDeck {
+    margin: 50%;
+  }
+
+  img {
+    padding-bottom: 10px;
+  }
+
+  button {
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    align-content: center;
+    outline: none;
+
+    &:hover {
+      background-color: #990EFF;
+    }
+  }
+
+  .card-subtitle {
+    font-size: 14px;
+  }
+
+  .card-body {
+    // height: 15rem;
+  }
+`
+
 
 class Post extends Component {
   render(){
     const { allPost } = this.props
     return(
-      <Container>
-        {/* <Row> */}
-        <div>
+
+      <CardStyle>
+        <CardDeck>
           {allPost.map((p,i)=>{
-            return <div key={i}>
-              <Col><h1>{p.picture}</h1></Col>
-              <Link to={`/show/${i}`}>
-                <Col><h1>{p.name}</h1></Col>
-              </Link>
-              <Col><h2>{p.review}</h2></Col>
-              <h1>{p.id}</h1>
-            </div>
-            })}
-          </div>
-        {/* </Row> */}
-      </Container>
+            return <Card style={{ width: 12 + 'rem' }}>
+                      {/* <Col xs={ 6 } md={ 4 }> */}
+                        <Card.Img style={{ height: 'auto' }} variant='top' src={`${p.picture}`} thumbnail />
+                      {/* </Col> */}
+                      <Card.Body>
+                        <Link to={`/show/${i}`}>
+                          <Card.Title><Col>{p.name}</Col></Card.Title>
+                        </Link>
+                        <Card.Subtitle className='mb-2 text-muted'><Col>{p.cuisine}</Col></Card.Subtitle>
+                        <Card.Text><Col><p>{p.review}</p></Col></Card.Text>
+                        <Link to={`/show/${i}`}>
+                          <button>View More</button>
+                        </Link>
+                      </Card.Body>
+            </Card>
+          })}
+        </CardDeck>
+      </CardStyle>
+
 
     )
   }
