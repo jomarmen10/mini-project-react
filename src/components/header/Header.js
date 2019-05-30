@@ -18,8 +18,8 @@ const NavStyle = styled.div`
     }
   }
 
-  .icon {
-    color: white;
+  .navbar-toggler {
+    background-color: pink;
   }
 `
 

@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import Carousel from 'react-bootstrap/Carousel'
+
 
 class Show extends Component{
   state = {
