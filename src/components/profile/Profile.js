@@ -8,7 +8,11 @@ class Profile extends Component {
     listOfComments: [],
     post: [],
     show: false,
-    commentId: null
+    commentId: null,
+    comments: "",
+    username: "",
+    userId: null,
+    postId: null
   }
 
   componentDidMount(){
@@ -16,6 +20,17 @@ class Profile extends Component {
       this.setState({
         listOfComments: res
       })
+    })
+  }
+
+  addPostId = () => {
+    console.log(this.commentsAndPosts())
+    this.commentsAndPosts().map((p,i)=>{
+      if(this.state.username === p.comment.username){
+        this.setState({
+          postId: p.post.id
+        })
+      }
     })
   }
 
@@ -27,7 +42,7 @@ class Profile extends Component {
     this.setState({
       show: true,
       [e.currentTarget.name]: e.currentTarget.value
-     });
+     })
   }
 
   getComments = async() => {
@@ -42,6 +57,37 @@ class Profile extends Component {
     }
   }
 
+  handleEdit = async(e) =>{
+    try{
+      e.preventDefault()
+      const createComment = await fetch(`http://localhost:8000/comment/comment/${this.state.commentId}`, {
+        method: "PUT",
+        body: JSON.stringify(this.state),
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      this.handleClose()
+    }catch(err){
+      return err
+    }
+  }
+
+  handleInput = async(e) => {
+    try{
+      await this.setState({
+        [e.currentTarget.name]: e.currentTarget.value,
+        username: this.props.currentUser.username,
+        userId: this.props.currentUser.id
+      })
+      await this.addPostId()
+    }catch(err){
+
+    }
+
+  }
 
   handleDelete = async() => {
     try{
@@ -77,8 +123,7 @@ class Profile extends Component {
 
   render(){
     const { currentUser, isLogged, allPost } = this.props
-    const { listOfComments } = this.state
-    console.log(this.props.allPost)
+    const { listOfComments, comments } = this.state
     return(
       <div>
         {
@@ -91,7 +136,7 @@ class Profile extends Component {
                     <div key={i}>
                       <h1>{c.post.name}</h1>
                       <p>{c.comment.comments} </p>
-                      <h2>commentId: {c.comment.id}</h2>
+                      <h2>post: {c.post.id}</h2>
                       <Button variant="primary" onClick={this.handleShow} name="commentId" value={c.comment.id}>
                         Edit
                       </Button>
@@ -100,11 +145,13 @@ class Profile extends Component {
                           <Modal.Title>{c.post.name}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                          <input placeholder="testsedsfs" value={c.comment.comments}></input>
+                          <form onSubmit={this.handleEdit}>
+                            <input placeholder='Enter New Comment' name='comments' value={comments} onChange={this.handleInput}></input>
+                          </form>
                         </Modal.Body>
                         <Modal.Footer>
-                          <Button  onClick={this.handleClose}>
-                            Close
+                          <Button onClick={this.handleEdit}>
+                            Edit
                           </Button>
                           <Button  onClick={this.handleDelete}>
                             Delete

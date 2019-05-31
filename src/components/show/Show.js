@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Comment from '../comment/Comment'
 import styled from 'styled-components'
 import { Carousel, Container, Row, Col, Button } from 'react-bootstrap'
-import Comment from '../comment/Comment'
+
 
 
 
