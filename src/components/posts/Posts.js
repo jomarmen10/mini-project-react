@@ -4,13 +4,15 @@ import { Card, CardDeck, Col, Image } from 'react-bootstrap'
 import styled from 'styled-components'
 
 const CardStyle = styled.div`
-
   .cardDeck {
     margin: 50%;
   }
 
   img {
     padding-bottom: 10px;
+    max-width: 20rem;
+    height: 10rem;
+    object-fit: cover;
   }
 
   button {
@@ -41,13 +43,12 @@ class Post extends Component {
   render(){
     const { allPost } = this.props
     return(
-
       <CardStyle>
         <CardDeck>
           {allPost.map((p,i)=>{
             return <Card style={{ width: 12 + 'rem' }}>
                       {/* <Col xs={ 6 } md={ 4 }> */}
-                        <Card.Img style={{ height: 'auto' }} variant='top' src={`${p.picture}`} thumbnail />
+                        <Card.Img variant='top' src={`${p.picture}`} thumbnail />
                       {/* </Col> */}
                       <Card.Body>
                         <Link to={`/show/${i}`}>
@@ -63,8 +64,6 @@ class Post extends Component {
           })}
         </CardDeck>
       </CardStyle>
-
-
     )
   }
 }
