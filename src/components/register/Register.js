@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+
 
 class Register extends Component {
   state = {
@@ -22,15 +24,21 @@ class Register extends Component {
 
   render(){
     const { username, password, verify_password, email } = this.state
+    const { isLogged } = this.props
     return(
       <div>
-        <form onSubmit={this.submitHandler}>
-          <input type='text' name='username' placeholder='username' value={username} onChange={this.inputHandler}></input>
-          <input type='password' name='password' placeholder='password' value={password} onChange={this.inputHandler}></input>
-          <input type='password' name='verify_password' placeholder='verify password' value={verify_password} onChange={this.inputHandler}></input>
-          <input type='text' name='email' placeholder='email' value={email} onChange={this.inputHandler}></input>
-          <button type='Submit'>Register</button>
-        </form>
+        {
+          isLogged
+          ? <Redirect to={`/`} />
+          :   <form onSubmit={this.submitHandler}>
+              <input type='text' name='username' placeholder='username' value={username} onChange={this.inputHandler}></input>
+              <input type='password' name='password' placeholder='password' value={password} onChange={this.inputHandler}></input>
+              <input type='password' name='verify_password' placeholder='verify password' value={verify_password} onChange={this.inputHandler}></input>
+              <input type='text' name='email' placeholder='email' value={email} onChange={this.inputHandler}></input>
+              <button type='Submit'>Register</button>
+            </form>
+        }
+
       </div>
     )
   }

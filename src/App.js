@@ -9,11 +9,14 @@ import Show from './components/show/Show'
 import Profile from './components/profile/Profile'
 import EditDelete from './components/editDelete/EditDelete'
 
+///addd the picture function
+
 class App extends Component {
   state = {
     currentUser: null,
     isLogged: false,
-    post: []
+    post: [],
+    pic: []
   }
 
   componentDidMount(){
@@ -38,7 +41,6 @@ class App extends Component {
         credentials: 'include'
       })
       const resParsed = await postData.json()
-      console.log(resParsed)
       return resParsed
     }catch(err){
       return err
@@ -82,6 +84,7 @@ class App extends Component {
       })
       const resParsed = await registerUser.json()
       this.setState({
+        isLogged: true,
         currentUser: resParsed
       })
     }catch(err){
@@ -100,7 +103,7 @@ class App extends Component {
           <Route exact path={'/profile'} render={(props)=> <Profile {...props} allPost={this.state.post} isLogged={this.state.isLogged} currentUser={this.state.currentUser}/>} />
           <Route exact path={'/show/:id'} render={(props)=>{ return <Show {...props}  posts={this.state.post} currentUser={this.state.currentUser} isLogged={this.state.isLogged}/>}}/>
           <Route exact path={'/'} render={()=>(<Post allPost={this.state.post} />)} />
-          <Route exact path={'/register'} render={()=>( <Register register={this.register}/> )} />
+          <Route exact path={'/register'} render={()=>( <Register isLogged={this.state.isLogged} register={this.register}/> )} />
           <Route exact path={'/login'} render={()=>( <Login login={this.userLogin} isLogged={this.state.isLogged}/>)} />
         </Switch>
       </div>
