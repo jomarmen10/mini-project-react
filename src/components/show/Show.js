@@ -4,6 +4,7 @@ import Comment from '../comment/Comment'
 import styled from 'styled-components'
 import { Carousel, Container, Row, Col, Button } from 'react-bootstrap'
 
+
 const ShowStyle = styled.div`
   .right-column {
     padding-top: 16%;
@@ -147,7 +148,7 @@ class Show extends Component{
                       <h4 className='cost'>{rest.cost} · {rest.cuisine}</h4>
                       <h5>{rest.address}</h5><br/>
                       <p>{rest.review}</p>
-                      <p>comment id: {rest.id}</p>
+                      {/* <p>comment id: {rest.id}</p> */}
                       <Comment commentId={rest.id} listOfComment={this.state.listOfComment}/>
                       {
                         isLogged
@@ -166,7 +167,7 @@ class Show extends Component{
                 }
               </Row>
               <Row className='bottom-row'>
-                Comments
+                
               </Row>
             </Col>
           </Row>
