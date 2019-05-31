@@ -19,14 +19,12 @@ class App extends Component {
   componentDidMount(){
     const user = localStorage.getItem("current")
     const parsedUser = JSON.parse(user)
-    if(user){
       this.allPost().then(res => {
         this.setState({
           post: res,
           currentUser: parsedUser
         })
       })
-    }
   }
 
   doSetCurrentUser = user =>
