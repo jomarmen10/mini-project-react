@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
+import styled from 'styled-components'
 
 
 class Profile extends Component {
@@ -27,7 +28,7 @@ class Profile extends Component {
     this.setState({
       show: true,
       [e.currentTarget.name]: e.currentTarget.value
-     });
+    });
   }
 
   getComments = async() => {
@@ -85,7 +86,7 @@ class Profile extends Component {
           isLogged
             ? (
               <div>
-                <h2>{currentUser.username}</h2>
+                <h2>Hello, {currentUser.username}</h2>
                 {this.commentsAndPosts().map((c, i)=>{
                   return(
                     <div key={i}>
@@ -103,10 +104,10 @@ class Profile extends Component {
                           <input placeholder="testsedsfs" value={c.comment.comments}></input>
                         </Modal.Body>
                         <Modal.Footer>
-                          <Button  onClick={this.handleClose}>
-                            Close
+                          <Button  variant='outline-success' onClick={this.handleClose}>
+                            Submit Change
                           </Button>
-                          <Button  onClick={this.handleDelete}>
+                          <Button  variant='outline-danger' onClick={this.handleDelete}>
                             Delete
                           </Button>
                         </Modal.Footer>

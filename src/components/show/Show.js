@@ -23,6 +23,14 @@ const ShowStyle = styled.div`
   .join-link {
     padding-top: 35%;
   }
+
+  input {
+    outline: none;
+  }
+
+  form {
+    padding-top: 20%;
+  }
 `
 
 
@@ -145,11 +153,11 @@ class Show extends Component{
                         isLogged
                           ? (
                             <form onSubmit={this.submitHandler}>
-                              <input type="text" name="comments" placeholder="comment/review" value={comment} onChange={this.inputHandler}></input>
+                              <input type="text" name="comments" placeholder="Add a suggestion" value={comment} onChange={this.inputHandler}></input>
                               <button type='Submit'>Submit</button>
                             </form>
                           )
-                          : <h4 className='join-link'><Link to={'/login'}>Login</Link> or <Link to={'/register'}>Register</Link> to add a comment</h4>
+                          : <h4 className='join-link'><Link to={'/login'}>Login</Link> or <Link to={'/register'}>Register</Link> to leave a suggestion</h4>
                       }
 
                     </div>
