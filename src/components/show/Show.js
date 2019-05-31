@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Comment from '../comment/Comment'
 import styled from 'styled-components'
 import { Carousel, Container, Row, Col, Button } from 'react-bootstrap'
+import Comment from '../comment/Comment'
 
 
 
@@ -77,61 +78,74 @@ class Show extends Component{
     const rest = posts[this.props.match.params.id]
 
     return(
-      <Carousel>
-        <Carousel.Item>
-          <img className='d-block w-100' src='' alt='First slide' />
-          <Carousel.Caption>
-            <h3>First slide</h3>
-            <p>add pic here</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className='d-block w-100' src='' alt='Second slide' />
-          <Carousel.Caption>
-            <h3>Second slide</h3>
-            <p>add pic here</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className='d-block w-100' src='' alt='Third slide' />
-          <Carousel.Caption>
-            <h3>Third slide</h3>
-            <p>add pic here</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className='d-block w-100' src='' alt='Fourth slide' />
-          <Carousel.Caption>
-            <h3>Fourth slide</h3>
-            <p>add pic here</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <div>
-        {rest
-          ?(
-            <div>
-              <h1>{rest.name}</h1>
-              <h3>{rest.address}</h3>
-              <p>{rest.review}</p>
-              <h1>comment id: {rest.id}</h1>
-              <Comment  commentId={rest.id} listOfComment={this.state.listOfComment}/>
-              {
-                isLogged
-                  ? (
-                    <form onSubmit={this.submitHandler}>
-                      <input type="text" name="comments" placeholder="comment/review" value={comment} onChange={this.inputHandler}></input>
-                      <button type='Submit'>Submit</button>
-                    </form>
-                  )
-                  : <h2>Login to add comment</h2>
+      <Container>
+        <Row>
+          <Col>
+            <Carousel>
+              <Carousel.Item>
+                <img className='d-block w-100' src='' alt='First slide' />
+                <Carousel.Caption>
+                  <h3>First slide</h3>
+                  <p>add pic here</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img className='d-block w-100' src='' alt='Second slide' />
+                <Carousel.Caption>
+                  <h3>Second slide</h3>
+                  <p>add pic here</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img className='d-block w-100' src='' alt='Third slide' />
+                <Carousel.Caption>
+                  <h3>Third slide</h3>
+                  <p>add pic here</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img className='d-block w-100' src='' alt='Fourth slide' />
+                <Carousel.Caption>
+                  <h3>Fourth slide</h3>
+                  <p>add pic here</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </Col>
+          <Col>
+            <Row>
+              {rest
+                ?(
+                  <div>
+                    <h1>{rest.name}</h1>
+                    <h3>{rest.address}</h3>
+                    <p>{rest.review}</p>
+                    <h1>comment id: {rest.id}</h1>
+                    <Comment commentId={rest.id} listOfComment={this.state.listOfComment}/>
+                    {
+                      isLogged
+                        ? (
+                          <form onSubmit={this.submitHandler}>
+                            <input type="text" name="comments" placeholder="comment/review" value={comment} onChange={this.inputHandler}></input>
+                            <button type='Submit'>Submit</button>
+                          </form>
+                        )
+                        : <h2>Login to add comment</h2>
+                    }
+
+                  </div>
+                )
+                :<h1>Loading...</h1>
               }
 
-            </div>
-          )
-          :<h1>Loading...</h1>
-        }
-      </div>
-      </Carousel>
+            </Row>
+            <Row>
+              Comments
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+
 
     )
   }
