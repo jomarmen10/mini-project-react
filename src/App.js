@@ -17,12 +17,22 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.allPost().then(res => {
-      this.setState({
-        post: res
+    const user = localStorage.getItem("current")
+    const parsedUser = JSON.parse(user)
+    if(user){
+      this.allPost().then(res => {
+        this.setState({
+          post: res,
+          currentUser: parsedUser
+        })
       })
-    })
+    }
   }
+
+  doSetCurrentUser = user =>
+    this.setState({
+      currentUser: user
+    })
 
   allPost = async() => {
     try{
@@ -49,6 +59,7 @@ class App extends Component {
       })
       const resParsed = await loginData.json()
       if(resParsed.success){
+        localStorage.setItem("current", JSON.stringify(resParsed.user))
         this.setState({
           isLogged: true,
           currentUser: resParsed.user

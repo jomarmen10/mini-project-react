@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+
 
 class Comment extends Component {
 
@@ -14,7 +16,6 @@ class Comment extends Component {
                   {if(Number(m.postId) === commentId ){
                     return <p key={i}>{m.username}:{ m.comments}</p>
                   }}
-
                 })}
               </div>
             )
