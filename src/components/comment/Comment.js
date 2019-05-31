@@ -14,7 +14,7 @@ class Comment extends Component {
               <div>
                 {listOfComment.map((m,i)=>{
                   {if(Number(m.postId) === commentId ){
-                    return <p key={i}>{m.username}:{ m.comments}</p>
+                    return <p key={i}><strong>{m.username}</strong>: { m.comments}</p>
                   }}
                 })}
               </div>

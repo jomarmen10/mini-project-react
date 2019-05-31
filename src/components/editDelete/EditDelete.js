@@ -32,7 +32,7 @@ class EditDelete extends Component{
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
+            <Button variant="danger" onClick={this.handleClose}>
               Save Changes
             </Button>
           </Modal.Footer>
