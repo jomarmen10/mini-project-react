@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
+import styled from 'styled-components'
 
 
 class Profile extends Component {
@@ -130,7 +131,7 @@ class Profile extends Component {
           isLogged
             ? (
               <div>
-                <h2>{currentUser.username}</h2>
+                <h2>Hello, {currentUser.username}</h2>
                 {this.commentsAndPosts().map((c, i)=>{
                   return(
                     <div key={i}>
@@ -153,7 +154,7 @@ class Profile extends Component {
                           <Button onClick={this.handleEdit}>
                             Edit
                           </Button>
-                          <Button  onClick={this.handleDelete}>
+                          <Button  variant='outline-danger' onClick={this.handleDelete}>
                             Delete
                           </Button>
                         </Modal.Footer>
