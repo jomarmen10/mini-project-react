@@ -33,7 +33,7 @@ class Profile extends Component {
 
   getComments = async() => {
     try{
-      const postData = await fetch('http://localhost:8000/comment/comment', {
+      const postData = await fetch(process.env.REACT_APP_BACKEND_URL + '/comment/comment', {
         credentials: 'include'
       })
       const resParsed = await postData.json()

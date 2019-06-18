@@ -34,7 +34,7 @@ class App extends Component {
 
   allPost = async() => {
     try{
-      const postData = await fetch('http://localhost:8000/api/v1/posts', {
+      const postData = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/posts', {
         credentials: 'include'
       })
       const resParsed = await postData.json()
@@ -47,7 +47,7 @@ class App extends Component {
 
   userLogin = async(data)=> {
     try{
-      const loginData = await fetch('http://localhost:8000/users/login', {
+      const loginData = await fetch(process.env.REACT_APP_BACKEND_URL + '/users/login', {
         method: "POST",
         body: JSON.stringify(data),
         credentials: 'include',
@@ -72,7 +72,7 @@ class App extends Component {
 
   register = async(data) => {
     try{
-      const registerUser = await fetch('http://localhost:8000/users/registration', {
+      const registerUser = await fetch(process.env.REACT_APP_BACKEND_URL + '/users/registration', {
         method: "POST",
         body: JSON.stringify(data),
         credentials: 'include',

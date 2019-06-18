@@ -74,7 +74,7 @@ class Show extends Component{
   submitHandler = async(e) => {
     try {
       e.preventDefault()
-      const createComment = await fetch('http://localhost:8000/comment/comment', {
+      const createComment = await fetch(process.env.REACT_APP_BACKEND_URL + '/comment/comment', {
         method: "POST",
         body: JSON.stringify(this.state),
         credentials: 'include',
@@ -89,7 +89,7 @@ class Show extends Component{
 
   getComments = async() => {
     try{
-      const postData = await fetch('http://localhost:8000/comment/comment', {
+      const postData = await fetch( process.env.REACT_APP_BACKEND_URL + '/comment/comment', {
         credentials: 'include'
       })
       const resParsed = await postData.json()
