@@ -20,10 +20,16 @@ class App extends Component {
     const user = localStorage.getItem("current")
     const parsedUser = JSON.parse(user)
       this.allPost().then(res => {
-        this.setState({
-          post: res,
-          currentUser: parsedUser
-        })
+        if(res !== {}){
+          this.setState({
+            post: res || [],
+            currentUser: parsedUser
+          })
+        } else {
+          this.setState({
+            post: []
+          })
+        }
       })
   }
 
@@ -38,7 +44,6 @@ class App extends Component {
         credentials: 'include'
       })
       const resParsed = await postData.json()
-      console.log(resParsed)
       return resParsed
     }catch(err){
       return err

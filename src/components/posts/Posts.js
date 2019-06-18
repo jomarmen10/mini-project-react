@@ -45,7 +45,7 @@ class Post extends Component {
     return(
       <CardStyle>
         <CardDeck>
-          {(allPost || []).map((p,i)=>{
+          {([] || allPost).map((p,i)=>{
             return <Card style={{ width: 12 + 'rem' }}>
                       {/* <Col xs={ 6 } md={ 4 }> */}
                         <Card.Img variant='top' src={`${p.picture}`} thumbnail />
