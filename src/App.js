@@ -9,12 +9,14 @@ import Show from './components/show/Show'
 import Profile from './components/profile/Profile'
 import EditDelete from './components/editDelete/EditDelete'
 
+console.log(process.env.REACT_APP_BACKEND_URL)
 class App extends Component {
   state = {
     currentUser: null,
     isLogged: false,
     post: []
   }
+
 
   componentDidMount(){
     const user = localStorage.getItem("current")
