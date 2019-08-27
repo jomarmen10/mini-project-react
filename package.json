@@ -5,11 +5,15 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "dotenv": "^8.0.0",
+    "eslint-utils": "^1.4.2",
+    "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
+    "socket.io-client": "^2.2.0",
     "styled-components": "^4.2.0",
     "yelp-fusion": "^3.0.0"
   },
